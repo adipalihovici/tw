@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun@WEB</title>
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/page.css" type="text/css" />
+</head>
+<body style="background-image: url('assets/backgrounds/city.jpg')">
+    <header>
+        <h1>Select a place to travel to</h1>
+    </header>
+    <image src="assets/images/city/house.png" class="object" onmouseover="printInstruction('Go home')" onclick="redirect('house.html')" />
+    <image src="assets/images/city/university.png" class="object" onmouseover="printInstruction('Go to the university')" onclick="redirect('university.html')" />
+    <image src="assets/images/city/office.png" class="object" onmouseover="printInstruction('Get to work')" onclick="redirect('office.html')" />
+    <image src="assets/images/city/arena.png" class="object" onmouseover="printInstruction('Visit the arena')" onclick="redirect('arena.html')" />
+    <footer></footer>
+    <script>
+        function redirect(x) {
+            document.location.replace(x);
+        }
+        function printInstruction(x) {
+            document.getElementsByTagName("footer")[0].innerHTML=x;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun@WEB</title>
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/page.css" type="text/css" />
+</head>
+<body style="background-image: url('assets/backgrounds/city.jpg')">
+    <div style="display:table;position:absolute;width:100vw;height:100vh">
+        <div style="display:table-cell;vertical-align:middle">
+            <form style="background-color:rgba(255,0,0,0.5);width:30vw;padding:20px;margin-left:auto;margin-right:auto">
+                Username:
+                <input type="text" name="username" /><br />
+                Password:
+                <input type="text" name="password" /><br />
+                <input class="button" style="font-family:'FreeMono',monospace;font-size:1em;padding:10px" value="Submit" onclick="redirect('city.html')" />
+            </form>
+    </div>
+    <script>
+        function redirect(x) {
+            document.location.replace(x);
+        }
+        function printInstruction(x) {
+            document.getElementsByTagName("footer")[0].innerHTML=x;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun@WEB</title>
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/page.css" type="text/css" />
+</head>
+<body>
+    <header>
+        <h1 onclick="redirect('index.html')">Fun@WEB</h1>
+        <h2>The best source for learning</h2>
+    </header>
+    <ul>
+        <li onclick="redirect('index.html')" class="nav">Home</li>
+        <li onclick="redirect('html.html')" class="nav">HTML</li>
+        <li onclick="redirect('css.html')" class="nav">CSS</li>
+        <li onclick="redirect('http.html')" class="nav">HTTP</li>
+        <li onclick="redirect('js.html')" class="nav current">JavaScript</li>
+    </ul>
+    <div id="content">
+        <article>
+            <h1>JavaScript</h1>
+            <p>JavaScript (JS) is a lightweight interpreted or JIT-compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as node.js and Apache CouchDB.</p>
+            <p>JavaScript is a prototype-based, multi-paradigm, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles.</p>
+        </article>
+    </div>
+    <footer>
+        &copy;2017 - The Fun@WEB Team
+    </footer>
+    <script>
+        function redirect(x) {
+            document.location.replace(x);
+        }
+    </script>
+</body>
+</html>

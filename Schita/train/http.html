@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun@WEB</title>
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/page.css" type="text/css" />
+</head>
+<body>
+    <header>
+        <h1 onclick="redirect('index.html')">Fun@WEB</h1>
+        <h2>The best source for learning</h2>
+    </header>
+    <ul>
+        <li onclick="redirect('index.html')" class="nav">Home</li>
+        <li onclick="redirect('html.html')" class="nav">HTML</li>
+        <li onclick="redirect('css.html')" class="nav">CSS</li>
+        <li onclick="redirect('http.html')" class="nav current">HTTP</li>
+        <li onclick="redirect('js.html')" class="nav">JavaScript</li>
+    </ul>
+    <div id="content">
+        <article>
+            <h1>Hypertext Transfer Protocol</h1>
+            <p>Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes.</p>
+            <p>HTTP follows a classical client-server model, with a client opening a connection to make a request, then waiting until it receives a response. HTTP is a stateless protocol, meaning that the server does not keep any data (state) between two requests. Though often based on a TCP/IP layer, it can be used on any reliable transport layer; that is, a protocol that doesn't lose messages silently, such as UDP.</p>
+        </article>
+    </div>
+    <footer>
+        &copy;2017 - The Fun@WEB Team
+    </footer>
+    <script>
+        function redirect(x) {
+            document.location.replace(x);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun@WEB</title>
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/page.css" type="text/css" />
+</head>
+<body onload="main()" style="background-image: url('assets/backgrounds/arena.jpg')">
+    <header>
+        <div id="health"></div>
+        <h1></h1>
+    </header>
+    <footer>
+        <div class="button" id="option1" onclick="option(1)"></div>
+        <div class="button" id="option2" onclick="option(2)"></div>
+        <div class="button" id="option3" onclick="option(3)"></div>
+    </footer>
+    <script>
+    var health;
+    var currentQuestion;
+    var question = [
+    ["What does HTML stand for?","The best","Hai taci mai, lasa-ma!","HyperText Markup Language",3],
+    ["Is the Earth flat?","Yes","No","Maybe",2],
+    ["Who formulated the Theory of Relativity","Isaac Newton","Albert Einstein","Stephen Hawking",2]
+    ];
+    function option(x){
+        if(currentQuestion[4]!=x){
+            health-=10;
+            document.getElementById('health').innerHTML="Health:"+health+"%";
+        }
+        if (health<=0){
+            document.location.replace('city.html');
+        }
+        newQuestion();
+    }
+    function newQuestion(){
+        currentQuestion = question[Math.floor(Math.random() * (question.length))];
+        document.getElementsByTagName('h1')[0].innerHTML=currentQuestion[0];
+        document.getElementById('option1').innerHTML=currentQuestion[1];
+        document.getElementById('option2').innerHTML=currentQuestion[2];
+        document.getElementById('option3').innerHTML=currentQuestion[3];
+    }
+    function main(){
+        health=100;
+        document.getElementById('health').innerHTML="Health:"+health+"%";
+        newQuestion();
+    }
+    </script>
+</body>
+</html>
