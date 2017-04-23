@@ -1,5 +1,5 @@
 <!-- <img src="/images/backgrounds/city.jpg"/> -->
-<div class="play-container-div">
+<!-- <div class="play-container-div"> -->
 
 <div class="play-main-div">
 
@@ -7,16 +7,44 @@
         <div id="health"></div>
         <h1></h1>
     </div>
-    <div class="play-footer-div">
-      <div class="play-all-buttons">
-        <div class="button" id="option1" data-ng-click="option(1)"></div>
-        <div class="button" id="option2" data-ng-click="option(2)"></div>
-        <div class="button" id="option3" data-ng-click="option(3)"></div>
-      </div>
+
+    <!-- <button type="button" class="btn btn-warning" id="play-me-button" data-ng-click="setProfileVisible()">Me ></button> -->
+    <!-- <button type="button" data-ng-click="setProfileVisible()">blah</button> -->
+    <!-- <button type="button" class="btn btn-warning" id="play-enemies-button">My Enemies</button> -->
+    <div class="play-middle-parent">
+      <div class="play-middle-parent1" style="display: inline-flex">
+    <button type="button" id="play-me-button" data-ng-click="setProfileVisible()">Me</button>
+    <div class="play-player-profile-div" id="player-profile-id" data-ng-click="setProfileVisible()">
+        <img src="/images/profiles/k1.png" class="play-profile-pic"/>
+          <p class="play-username-p" style="margin-bottom: 0">> Kit Kat</p>
+          <p class="play-profile-text" style="margin-bottom: 0;">This is your game with number: </p>
+          <p class="play-profile-text" style="margin-bottom: 0;">9</p><br>
+          <p class="play-profile-text" style="margin-bottom: 0;">This is the game with number: </p>
+          <p class="play-profile-text" style="margin-bottom: 0;">1789</p>
     </div>
+  </div>
+    <div class="play-middle-parent2" style="display: inline-flex">
+    <div class="play-current-players-div" id="player-enemies-id" data-ng-click="setEnemiesVisible()">
+      <p style="opacity: 1; font-weight: bold; margin: auto; font-family: 'FreeMono', monospace; font-size: 2vw; color: #da530f;text-decoration: underline;"> Now playing:
+        <ol>
+          <li class="play-current-player">Steven</p>
+          <li class="play-current-player">Adam</p>
+          <li class="play-current-player">Kit Kat</p>
+          <li class="play-current-player">Quincy</p>
+        </ol>
+    </div>
+        <button type="button" id="play-enemies-button" data-ng-click="setEnemiesVisible()">Enemies</button>
+      </div>
+  </div>
+     <div class="play-footer-div">
+        <div id="option1" class="play-answer-column-div" data-ng-click="option(1)">Asta este raspunsul cu numarul 1, este unul destul de lung. Are explicatii:explexplexp lexplvv explexplex  plexplex plexpl e xplexplexp lexplexp lvvexple xp lexplexpl explexple xplexpl explexple xpl v vexpl</div>
+        <div id="option2" class="play-answer-column-div" data-ng-click="option(2)">Asta este raspunsul cu numarul 2, este unul mediu. Are explicatii:explexp lexplex p  lv ve xp lexplex ple xplex vve xpl</div>
+        <div id="option3" class="play-answer-column-div" data-ng-click="option(3)">Asta este raspunsul cu numarul 3, este unul scurt</div>
+    </div>
+
 </div>
 
-<div class="play-below-game-div">
+<!-- <div class="play-below-game-div">
 <div class="play-player-profile-div">
     <img src="/images/profiles/k1.png" class="play-profile-pic"/>
       <p class="play-username-p">> SirPurrALot</p>
@@ -35,5 +63,5 @@
       </ol>
   </div>
 
-</div>
-</div>
+</div> -->
+<!-- </div> -->
