@@ -11,13 +11,14 @@ angular.module('funwebregandit1App')
   .controller('PlayCtrl', function ($scope) {
     var currentQuestion;
     var question = [
-    ["What does HTML"+'\n'+ "stand for?","The best","Hai taci mai, lasa-ma!","HyperText Markup Language",3],
+    ["What does HTML"+'\n'+ "stand for?","The best Un raspuns foarte lung de test. aka sa vad ce se intampa cand unul dintre raspunsuri este foarte lung muuuuuult mai lung decat celelalte","Hai taci mai, lasa-ma!","HyperText Markup Language",3],
     ["Is the Earth flat?","Yes","No","Maybe",2],
-    ["Who formulated the Theory of Relativity","Isaac Newton","Albert Einstein","Stephen Hawking",2]
+    ["O intrebare mai lunga, lunga lunga, cat de lunga, destul de lunga incat vreau sa vad daca incape in divul ala de sus? Daca incape bine daca nu incape iarasi bine! Bla Bla lba bla bla bla CE ?","Isaac Newton","Albert Einstein","The best Un raspuns foarte lung de test. aka sa vad ce se intampa cand unul dintre raspunsuri este foarte lung muuuuuult mai lung decat celelalte. Poate va intrebati cat de lung este acest raspuns...... unii spun ca ar fi cel mai lung raspuns raspuns vreodata la o intrebare cu raspuns",2]
     ];
-
+    var flagProfile = 0;
+    var flagEnemies = 0;
     function main() {
-      console.log(1968);
+      console.log("Se executa functia main() din play.js");
       health=100;
       document.getElementById('health').innerHTML="Health:"+health+"%";
       newQuestion();
@@ -43,11 +44,36 @@ angular.module('funwebregandit1App')
       newQuestion();
     }
     $scope.option = option;
+
+    function setProfileVisible() {
+      console.log("Se executa setProfileVisible !");
+      if(flagProfile%2==0){
+        document.getElementById('player-profile-id').style.visibility = 'visible';
+        // document.getElementById('play-me-button').style.visibility = 'hidden';
+      }
+      else{
+        document.getElementById('player-profile-id').style.visibility = 'hidden';
+      }
+      flagProfile++;
+    }
+
+    function setEnemiesVisible() {
+      console.log("Se executa setEnemiesVisible !");
+      if(flagEnemies%2==0){
+        document.getElementById('player-enemies-id').style.visibility = 'visible';
+        // document.getElementById('play-me-button').style.visibility = 'hidden';
+      }
+      else{
+        document.getElementById('player-enemies-id').style.visibility = 'hidden';
+      }
+      flagEnemies++;
+    }
+    $scope.setProfileVisible = setProfileVisible;
+    $scope.setEnemiesVisible = setEnemiesVisible;
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.healthbar = "ahviuhsfduihiu";
-    
+
   });
