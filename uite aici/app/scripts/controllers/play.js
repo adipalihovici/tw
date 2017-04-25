@@ -23,7 +23,7 @@ angular.module('funwebregandit1App')
                 ["What is the correct HTML for referring to an external style sheet","&lt;style src=\"mystyle.css\"&gt;","&lt;stylesheet&gt;mystyle.css&lt;/stylesheet&gt;","&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\"&gt;\"",3],
                 ["Where in an HTML document is the correct place to refer to an external style sheet?","At the end of the document","In the &lt;head&gt; section","In the &lt;body&gt; section", 2],
                 ["Which HTML tag is used to define an internal style sheet?","&lt;style&gt;","&lt;css&gt;","&lt;script&gt;",1],
-                ["Which is the correct CSS syntax?","body {color: black;}","{body:color=black;}","{body;color:black;}",1],
+                ["Which is the correct CSS syntax?","body {color: black;}","{body:color=black;}","{body;color:black;}",1]
                 ];
 
     function main() {
