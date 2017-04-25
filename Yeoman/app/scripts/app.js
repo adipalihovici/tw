@@ -36,6 +36,16 @@ angular
         controller: 'PlayCtrl',
         controllerAs: 'play'
       })
+      .when('/leaderboard', {
+        templateUrl: 'views/leaderboard.html',
+        controller: 'LeaderboardCtrl',
+        controllerAs: 'leaderboard'
+      })
+      .when('/stats', {
+        templateUrl: 'views/stats.html',
+        controller: 'StatsCtrl',
+        controllerAs: 'stats'
+      })
       .otherwise({
         redirectTo: '/'
       });

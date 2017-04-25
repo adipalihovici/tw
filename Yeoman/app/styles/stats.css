@@ -1,0 +1,139 @@
+@import url("fonts.css");
+
+.stats-container-div{
+    width: 180vw;
+    height: 100vh;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    /*border: solid;*/
+    overflow: hidden;
+}
+
+.stats-main-div{
+    position: static;
+    display: block;
+    height: 89vh;
+    width: 100vw;
+    background-size: contain;
+    overflow: hidden;
+    color: #FFF;
+    font-family: "FreeMono", monospace;
+    text-align: center;
+    font-size: 2vw;
+    background-image: url('/images/backgrounds/tileable-blue.jpg');
+    clear: both;
+    margin: 0 0 0 0; /*  */
+    padding: 0 0 0 0;
+    left: 0;
+    right: 0;
+}
+
+h1{
+  font-size: 4vmin;
+  margin: 0;
+  padding: 0;
+}
+.stats-footer-div {
+    display: inline-flex;
+    position: absolute;
+    margin-left: 0px;
+    padding-left: 0px;
+    border-left: 0px;
+    height: 28%;
+    width: 100%;
+    /*overflow: hidden;*/
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 20%;
+    background-color: rgba(0,0,0,0.75);
+}
+
+.stats-middle-parent{
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats-player-profile-div{
+    background-color: #cad8eb;
+    opacity: 0.9;
+    display: inline;
+    overflow: hidden;
+    width: 25vw;
+    height: 30vmin;
+    line-height: 92%;
+    top: 0;
+    margin-left: 0;
+    margin-top: 1.5vh;
+    margin-left: .2vw;
+    clear: both;
+    border-radius: 3vw;
+    border-color: yellow;
+    border-style: ridge;
+    left: 4.2vw;
+}
+.stats-current-players-div{
+  background-color: #cad8eb;
+  opacity: 0.9;
+  display: inline;
+  position: relative;
+  float: center;
+  width: 25vw;
+  height: 30vmin;
+  top: 0;
+  margin: 0;
+  margin-top: 1.5vh;
+  margin-right: .2vw;
+  border-radius: 3vw;
+  border-color: yellow;
+  border-style: ridge;
+  overflow: hidden;
+  clear: both;
+}
+.stats-profile-pic{
+  display: block;
+  width: 11vmin;
+  height: 11vmin;
+  margin: auto;
+  border-radius: 50%;
+  border: solid;
+  border-color: #fe1d00;
+  clear: both;
+}
+
+.stats-username-p{
+    display: block;
+    position: static;
+    margin-left: 0;
+    font-family: 'FreeMono', monospace;
+    font-style: italic;
+    font-size: 3vmin;
+    font-weight: bold;
+    color: #da530f;
+    margin: 0;
+    padding: 0;
+    right: 0;
+    left: 0;
+    /*font-weight: bold;*/
+}
+
+.stats-profile-text{
+  display: inline;
+  position: static;
+  margin-left: 1vw;
+  font-family: 'FreeMono', monospace;
+  font-style: italic;
+  font-size: 2vmin;
+  color: #f21a00;
+  font-weight: bold;
+}
+
+.stats-current-player{
+  font-family: "FreeMono", monospace;
+  font-size: 2vmin;
+  font-style: italic;
+  font-weight: bold;
+  color: #531000;
+}
