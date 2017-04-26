@@ -1,70 +1,71 @@
-.play-container-div{
-    width: 180vw;
-    height: 100vh;
-    left: 0;
-    right: 0;
-    padding: 0;
-    margin: 0;
-    /*border: solid;*/
-    overflow: hidden;
-}
+@import url("fonts.css");
 
 .play-main-div{
+  /*Div-ul play-main-div este div-ul principal, continutul sau reprezinta de fapt view-ul*/
+            /*care se va inlocui in index.html la accesarea /play;*/
     position: static;
-    display: block;
-    height: 89vh;
-    width: 100vw;
-    overflow: hidden;
+    display: block;  /*div-ul trebuie sa ocupe toata latimea paginii*/
+    width: 100vw;  /*Responsive, in functie de latimea ecranului*/
+    height: 89vh; /*inaltimea astfel incat sa nu obtureze panoul de meniu. Responsive, in functie de inaltimea ecranului*/
+    background-size: contain; /*imaginea se va repeta in interiorul div-ului, dar aceasta este tileable*/
+    overflow: hidden; /*continuturile divului nu inunda exteriorul*/
     color: #FFF;
-    font-family: "FreeMono", monospace;
+    font-family: "FreeMono", monospace; /*font importat din fonts.css*/
     text-align: center;
-    font-size: 2vw;
-    background-image: url('/images/backgrounds/circuit.jpg');
-    clear: both;
-    margin: 0 0 0 0; /*  */
+    font-size: 2vw; /*Responsive in functie de latimea ecranului*/
+    background-image: url('/images/backgrounds/tile.png');
+    /*background-repeat: repeat;*/
+    background-size: auto;
+    clear: both; /*div-ul nu accepta continuturile altui div sa faca float peste el*/
+    margin: 0 0 0 0;
     padding: 0 0 0 0;
     left: 0;
     right: 0;
 }
+
+ /*play-health-div este divul care apare in partea superioara a ecranului in care se desfasoara jocul.*/
+            /*Aici se afiseaza "viata" jucatorulu; */
 .play-health-div{
-    width: 100%;
-    height: auto;
-    left: 0;
+    width: 100%; /*100% din latimea parintelui, play-main-div => Responsive*/
+    height: auto; /*In functie de dimensiunea intrebarii care vine de la server => Responsive*/
     right: 0;
     background-color: rgba(0,0,0,0.5);
-      overflow:hidden;
+    overflow:hidden; /*continuturile divului nu inunda exteriorul*/
 }
+
 h1{
-  font-size: 4vmin;
+  font-size: 4vmin;  /*marime in functie de dimensiunea minima a ecranului => Responsive*/
   margin: 0;
   padding: 0;
 }
+
+/*Div-ul play-footer-div are rol de footer in ecranul de joc, contine cele trei raspunsuri posibile la intrebar*/
 .play-footer-div {
-    display: inline-flex;
-    position: absolute;
+    display: inline-flex; /*Pentru ca intrebarile(div-uri) sa poata aparea in coloane paralele*/
+    position: absolute;   /*Pentru a cobora in josul div-ului parinte*/
     margin-left: 0px;
     padding-left: 0px;
     border-left: 0px;
-    height: 28%;
-    width: 100%;
-    /*overflow: hidden;*/
+    height: 28%;          /*Dimensiuni relative la cele ale parintelui => Responsive*/
+    width: 100%.;
     left: 0;
     right: 0;
     bottom: 0;
-    min-height: 20%;
+    min-height: 20%;       /*Oricat de mici ar fi raspunsurile, inaltimea divului de jos sa nu coboare sub 20% din parinte*/
     background-color: rgba(0,0,0,0.75);
 }
 
+/*Raspunsurile la intrebari*/
 .play-answer-column-div{
-  font-size: 2.5vmin;
-  border: solid 1vh #b188fe;
-  width: 33.33%;
+  font-size: 2.5vmin;           /*Marime in functie de dimensiunea minima a ecranului => Responsive*/
+  border: solid 1vh #b188fe;    /*Bordura pentru fiecare dintre raspunsuri. Dimensionata responsive*/
+  width: 33.33%;                 /*Responsive*/
   height: 100%;
-  line-height: 92%;
-  cursor: pointer;
-  min-height: 100%;
+  line-height: 92%;              /*Micsoram diferenta default dintre randurile de text. Responsive*/
+  cursor: pointer;               /*Cursorul se modifica cand este deasupra raspunsurilor*/
+  min-height: 100%;             /*Indiferent de inaltimea parintelui(footer), coloanele de raspuns vor ocupa tot parintele*/
 }
-.play-answer-column-div:hover{
+.play-answer-column-div:hover{ /*Se modifica stilul fiecarui raspuns la hover*/
     background-color: rgb(31, 121, 254, 0.7);
     font-weight: bold;
     overflow: hidden;
@@ -73,16 +74,17 @@ h1{
 }
 
 .play-middle-parent{
-  display: flex;
-  justify-content: space-between;
+  display: flex;      /*Afisarea in coloane paralele a celor doua divuri centrale*/
+  justify-content: space-between;   /*Impingerea in laturi opuse a divurilor copii*/
 }
 
+/*Div-ul cu detaliile jucatorului. Apare in st*/
 .play-player-profile-div{
     background-color: #cad8eb;
     opacity: 0.9;
     display: inline;
     overflow: hidden;
-    width: 25vw;
+    width: 25vw;     /* Dimensiuni in functie de cele ale ecranului => Responsive*/
     height: 30vmin;
     line-height: 92%;
     top: 0;
@@ -90,12 +92,14 @@ h1{
     margin-top: 1.5vh;
     margin-left: .2vw;
     clear: both;
-    visibility: hidden;
+    visibility: hidden;         /*Apare pe ecran abia dupa ce este apasat butonul 'Me'*/
     border-radius: 3vw;
     border-color: yellow;
     border-style: ridge;
     left: 4.2vw;
 }
+
+    /*Div-ul in care va apare lista cu inamicii*/
 .play-current-players-div{
   background-color: #cad8eb;
   opacity: 0.9;
@@ -113,26 +117,29 @@ h1{
   border-style: ridge;
   overflow: hidden;
   clear: both;
-  visibility: hidden;
+  visibility: hidden;          /* Apare pe ecran dupa apasarea butonului 'Enemies'  */
 }
+
+   /*Fotografia de profil*/
 .play-profile-pic{
-  display: block;
-  width: 11vmin;
+  display: block;         /* Ocupa intreaga lungime a */
+  width: 11vmin;          /*Dimensiuni in functie de cele ale ecranului => Responisve*/
   height: 11vmin;
-  margin: auto;
-  border-radius: 50%;
+  margin: auto;            /* Va aparea centrata*/
+  border-radius: 50%;      /* Forma de cerc*/
   border: solid;
   border-color: #fe1d00;
   clear: both;
 }
 
+    /*Paragraf cu username-ul*/
 .play-username-p{
-    display: block;
+    display: block;       /*Ocupa intreaga latime*/
     position: static;
     margin-left: 0;
-    font-family: 'FreeMono', monospace;
+    font-family: 'FreeMono', monospace;       /*Font din fonts.css*/
     font-style: italic;
-    font-size: 3vmin;
+    font-size: 3vmin;         /*Dimensiune responsive*/
     font-weight: bold;
     color: #da530f;
     margin: 0;
@@ -142,6 +149,7 @@ h1{
     /*font-weight: bold;*/
 }
 
+    /*Detaliile despre jucator, un paragraf*/
 .play-profile-text{
   display: inline;
   position: static;
@@ -153,22 +161,23 @@ h1{
   font-weight: bold;
 }
 
+    /*Username-ul unui inamic*/
 .play-current-player{
   font-family: "FreeMono", monospace;
-  font-size: 2vmin;
+  font-size: 2vmin;      /*Dimensoinat responsive*/
   font-style: italic;
   font-weight: bold;
   color: #531000;
 }
 
+    /*Buton care afiseaza play-player-profile-div*/
 #play-me-button{
   background-color: #cad8eb;
   opacity: .95;
   overflow: hidden;
   display: inline;
   width: auto;
-  height: 4vh;
-  /*height: auto; ////////////////////////////////////////////////////////////////////////*/
+  height: 4vh;       /*Toate dimensiunile sunt responsive mai putin bordura, de un pixel*/
   border: solid 1px yellow;
   border-radius: .5vh;
   color: #da530f;
@@ -177,37 +186,38 @@ h1{
   margin-top: 1.5vh;
   font-size: 2vmin;
   clear: both;
-  float: left;
+  float: left;        /*Butonul se va lipi de marginea din stanga*/
 }
 
+    /*Buton care afiseaza play-current-players-div*/
 #play-enemies-button{
   background-color: #cad8eb;
   opacity: .95;
   display: inline;
-  width: auto;
+  width: auto;          /*Toate dimensiunile sunt relative => Responsive*/
   height: 4vh;
-  /*height: auto; ////////////////////////////////////////////////////////////////////////*/
   border: solid 1px yellow;
   border-radius: .5vh;
-  float: right;
+  float: right;         /*Butonul se va lipi de marginea din dreapta*/
   margin: 0;
   margin-right: .5vw;
-    color: #da530f;
+  color: #da530f;
   top: 0;
   font-size: 2.5vmin;
   clear: both;
 }
-@media all and (orientation: portrait) {
+@media all and (orientation: portrait) {     /*Cand utilizatorul foloseste site-ul in mod portrait pe telefon/tableta, atunci apar cateva modificari*/
+    /*Div-ul incare vor apare raspunsurile posibile*/
   .play-footer-div {
     display: flex;
     justify-content: space-between;
-      flex-direction: column;
+      flex-direction: column;       /*Modificam flex-direction care este default 'row'. Acum devine column*/
       position: absolute;
       margin-left: 0px;
       padding-left: 0px;
       border-left: 0px;
-      height: 35%;
-      width: 100%;
+      height: 35%;        /*Se mareste inaltimea relativa la parinte, ramanand responsive*/
+      width: 100%.;
       /*overflow: hidden;*/
       left: 0;
       right: 0;
@@ -215,14 +225,15 @@ h1{
       min-height: 20%;
       background-color: rgba(0,0,0,0.75);
   }
+  /*Raspunsurile apar pe randuri paralele in play-footer-div*/
   .play-answer-column-div{
     font-size: 2.5vmin;
     border: solid .6vw #b188fe;
-    width: 100%;
-    height: 33.33%;
+    width: 100%;          /*Late cat parintele*/
+    height: 33.33%;      /*Fiind trei si ocupand inaltime egala => fiecare 33.33%*/
     line-height: 92%;
     cursor: pointer;
-    min-height: 15%;
+    min-height: 33.33%;
     min-width: 100%;
   }
   #play-me-button{
@@ -231,8 +242,7 @@ h1{
     overflow: hidden;
     display: inline;
     width: auto;
-    height: 8vh;
-    /*height: auto; ////////////////////////////////////////////////////////////////////////*/
+    height: 8vh;    /*Creste inaltimea*/
     border: solid 1px yellow;
     border-radius: .5vh;
     color: #da530f;
@@ -249,15 +259,14 @@ h1{
     opacity: .95;
     display: inline;
     width: auto;
-    height: 8vh;
-    /*height: auto; ////////////////////////////////////////////////////////////////////////*/
+    height: 8vh;       /*Creste inaltimea*/
     border: solid 1px yellow;
     border-radius: .5vh;
     float: right;
     margin: 0;
     margin-top: 1.5vh;
     margin-right: .5vw;
-      color: #da530f;
+    color: #da530f;
     top: 0;
     font-size: .8em;
     clear: both;

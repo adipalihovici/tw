@@ -1,27 +1,24 @@
-.leaderboard-container-div{
+.stats-container-div{
     width: 180vw;
     height: 100vh;
     left: 0;
     right: 0;
     padding: 0;
     margin: 0;
-    /*border: solid;*/
-    /*overflow: hidden;*/
 }
 
-.leaderboard-main-div{
+.stats-main-div{
     position: static;
     display: block;
-    /*height: 89vh;*/
+    height: 89vh;
     width: 100vw;
-    /*overflow: hidden;*/
     color: #000;
     font-family: "FreeSans", sans-serif;
     text-align: center;
     font-size: 2vw;
     background-image: url('/images/backgrounds/circuit.jpg');
     clear: both;
-    margin: 0 0 0 0; /*  */
+    margin: 0 0 0 0;
     padding: 0 0 0 0;
     left: 0;
     right: 0;
@@ -33,11 +30,11 @@ h1{
   padding: 0;
 }
 
-.leaderboard-title{
+.stats-title{
   color: #FFF;
 }
 
-.leaderboard-footer-div {
+.stats-footer-div {
     display: inline-flex;
     position: absolute;
     margin-left: 0px;
@@ -53,63 +50,54 @@ h1{
     background-color: rgba(0,0,0,0.75);
 }
 
-.leaderboard-middle-parent{
-    display: flex;
-    justify-content: space-around;
-}
-.leaderboard-middle-child{
+.stats-player-profile-div{
     background-color: #cad8eb;
     opacity: 0.9;
     width: 25vw;
     border-radius: 3vw;
     border-color: yellow;
     border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
-.leaderboard-username-player{
+.stats-profile-pic{
+    display: block;
+    width: 11vmin;
+    height: 11vmin;
+    margin: auto;
+    border-radius: 50%;
+    border: solid;
+    border-color: #fe1d00;
+    clear: both;
+}
+
+.stats-username-player{
     display: block;
     position: static;
-    margin-left: 0;
     font-family: 'FreeMono', monospace;
     font-style: italic;
     font-size: 3vmin;
     font-weight: bold;
-    color: #F00;
+    color: #da530f;
     margin: 0;
     padding: 0;
-    right: 0;
-    left: 0;
     /*font-weight: bold;*/
 }
 
-.leaderboard-username-other{
-    display: block;
+.stats-profile-text{
+    display: inline;
     position: static;
-    margin-left: 0;
+    /*margin-left: 1vw;*/
     font-family: 'FreeMono', monospace;
     font-style: italic;
-    font-size: 3vmin;
+    font-size: 2vmin;
+    color: #f21a00;
     font-weight: bold;
-    color: #060;
-    margin: 0;
-    padding: 0;
-    right: 0;
-    left: 0;
-    /*font-weight: bold;*/
 }
 
-.leaderboard-profile-text{
-  display: inline;
-  position: static;
-  /*margin-left: 1vw;*/
-  font-family: 'FreeMono', monospace;
-  font-style: italic;
-  font-size: 2vmin;
-  color: #333;
-  font-weight: bold;
-}
-
-.leaderboard-current-player{
+.stats-current-player{
   font-family: "FreeMono", monospace;
   font-size: 2vmin;
   font-style: italic;
