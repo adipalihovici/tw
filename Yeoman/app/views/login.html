@@ -7,6 +7,10 @@
 
 <div ng-app ="funwebregandit1App" role="navigation">
 
+  <div class="stats-main-div" >
+
+  <div class="stats-player-profile-div" style="width:50vw">
+
 <form name="loginform" onSubmit="return validateForm();" action="/#!/about" method="post">
     <label>User name</label>
     <input type="text" name="usr" placeholder="username">
@@ -15,27 +19,14 @@
 </form>
 
 
-<button><a ng-href="#!/play">Play !</a>
-</button>
+<a href="#!/main">
+  <button id="loginbutton" data-ng-click="setHeaderVisible()">
+    Login
+  </button>
+  </a>
 
 
 </div>
-
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-aria/angular-aria.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-messages/angular-messages.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/play.js"></script>
-<script src="scripts/controllers/main.js"></script>
-<script src="scripts/controllers/about.js"></script>
-
+</div>
+</div>
 </html>
