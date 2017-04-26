@@ -1,0 +1,9 @@
+AngularJS	->	Framework, front-end
+
+Yeoman		-> 	Framework, front-end
+
+Bower		->	Package Manager
+
+NodeJS Express	->	Back-end
+
+API REST	->	Integrarea cu Facebook si Twitter
