@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h3.
+		Questions
+	ul
+		each questions, i in quest
+			li#quest_item
+				a(href="#")	#{questions.question}	with answers #{questions.a1} #{questions.a2} #{questions.a3}

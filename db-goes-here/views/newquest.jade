@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	h3=title
+	form#form_add_question(name="addquestion", method="post",action="/addquestion")
+		span Question
+		span &nbsp;
+		input#input_question(type="text", placeholder="quest", name="quest")
+		br
+		br
+		span A1
+		span &nbsp;
+		input#input_a1(type="text", placeholder="a1", name="a1")
+		br
+		br
+		span A2
+		span &nbsp;
+		input#input_a2(type="text", placeholder="a2", name="a2")
+		br
+		br
+		span A3
+		span &nbsp;
+		input#input_a3(type="text", placeholder="a3", name="a3")
+		br
+		br
+		span Rightanswer
+		span &nbsp;
+		input#input_rightanswer(type="text", placeholder="rightanswer", name="rightanswer")
+		br
+		br
+		button#submit_question(type="submit") submit
