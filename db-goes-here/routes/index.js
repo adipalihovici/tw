@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 router.get('/questions', function(req, res){
 	var MongoClient=mongodb.MongoClient;
 
-	var url = 'mongodb://localhost:27017/sample';
+	var url = 'mongodb://DummyUser:10laTW@ds137891.mlab.com:37891/tw';
 
 	MongoClient.connect(url, function(err,db){
 		if(err){
@@ -17,7 +17,7 @@ router.get('/questions', function(req, res){
 		}
 		else{
 			console.log('We are connected.');
-			var collection = db.collection('questions');
+			var collection = db.collection('Questions');
 
 			collection.find({}).toArray(function(err,result){
 				if(err){
