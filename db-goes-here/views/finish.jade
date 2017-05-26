@@ -1,0 +1,6 @@
+extends layout
+
+block content
+	h3=title
+	form#form_update_stats(name="checkstats", method="post",action="/endgame")
+		button#submit_stats(type="submit") submit

@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h3.
+		Statistics
+	ul
+		each statistics, i in checkstats
+			li#stat_item
+				a(href="#")	#{statistics.Games}
