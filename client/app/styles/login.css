@@ -1,0 +1,58 @@
+@import url("fonts.css");
+.login-container-div {
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.login-main-div {
+    position: relative;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    color: black;
+    font-family: "FreeMono", monospace;
+    text-align: center;
+    font-size: 14px;
+    clear: both;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    left: 0;
+    right: 0;
+}
+.login-div {
+    position: absolute;
+    background-color: lightblue;
+    opacity: 0.9;
+    width: 40vw;
+    height: 25vh;
+    border-radius: 3vw;
+    border-color: blue;
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 4vmin;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.login-button{
+  /*background-color: ;*/
+  /*opacity: 0.9;*/
+  position: relative;
+  width: 30vw;
+  height: 12vh;
+  border-radius: 2vw;
+  border-color: blue;
+  border-style: solid;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 2.5vmin;
+  /*left: 50%;*/
+  /*top: 50%;*/
+  /*transform: translate(-50%,-50%);*/
+}

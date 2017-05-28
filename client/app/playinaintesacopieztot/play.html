@@ -1,0 +1,57 @@
+
+<!-- Div-ul play-main-div este div-ul principal, continutul sau reprezinta de fapt view-ul
+            care se va inlocui in index.html la accesarea /play.html; -->
+<div class="play-main-div">
+
+    <!-- play-health-div este divul care apare in partea superioara a ecranului in care se desfasoara jocul.
+                Aici se afiseaza "viata" jucatorulu; -->
+    <div class="play-health-div">
+        <!-- In acest header apare intrebarea -->
+        <h1 class="current-question-h1">{{currentQuestion}}</h1>
+    </div>
+
+    <!-- div-ul play-middle-parent contine elementele din mijlocul ecranului de joc. Are display: flex;-->
+    <div class="play-middle-parent">
+      <!-- div-ul play-middle-parent1 contine elementele din partea stanga a ecranului de joc: butonul 'Me' si div-ul care apare dupa apasarea acestui buton; -->
+      <div class="play-middle-parent1" style="display: inline-flex">
+        <!-- La apasarea butonului play-me-button apare div-ul play-player-profile-div care afiseaza username-ul si poza de profil a jucatorului si cateva date despre joc -->
+        <button type="button" id="play-me-button" data-ng-click="setProfileVisible()">Me</button>
+        <!-- div-ul play-player-profile-div apare in stanga ecranului la apasarea butonului play-me-button si contine informatii despre jucatorul curent -->
+        <div class="play-player-profile-div" id="player-profile-id" data-ng-click="setProfileVisible()">
+          <!-- poza de profil din /images/profiles  si alte date, sub forma de paragrafe-->
+          <img src="/images/profiles/k1.png" class="play-profile-pic"/>
+          <p class="play-username-p" style="margin-bottom: 0">> ID : {{id}}</p><br>
+          <p class="play-profile-text" style="margin-bottom: 0;">{{myScore}} points</p><br>
+          <p class="play-profile-text" style="margin-bottom: 0;">This is your game with number: </p>
+          <p class="play-profile-text" style="margin-bottom: 0;">9</p><br>
+          <p class="play-profile-text" style="margin-bottom: 0;">This is the game with number: </p>
+          <p class="play-profile-text" style="margin-bottom: 0;">1789</p>
+        </div>
+      </div>
+
+      <!-- div-ul play-middle-parent2 contine elementele din partea dreapta a ecranului de joc: butonul 'Enemies' si div-ul care apare dupa apasarea acestui buton; -->
+      <div class="play-middle-parent2" style="display: inline-flex">
+        <!-- div-ul play-current-players-div apare in dreapta ecranului la apasarea butonului play-enemies-button si afiseaza o lista cu inamicii  -->
+        <div class="play-current-enemy-div" id="player-enemy-id" data-ng-click="setEnemiesVisible()">
+          <!-- lista cu inamicii, ordered list -->
+          <img src="/images/profiles/ocelot.jpg" class="play-profile-pic" alt="Imagine indisponibila"/>
+          <p class="play-username-p" style="margin-bottom: 0">> ID : {{enemyId}}</p>
+          <p class="play-profile-text" style="margin-bottom: 0;">{{enemyScore}} points</p><br>
+          <p class="play-profile-text" style="margin-bottom: 0;">This is your game with number: </p>
+          <p class="play-profile-text" style="margin-bottom: 0;">99</p><br>
+          <p class="play-profile-text" style="margin-bottom: 0;">This is the game with number: </p>
+          <p class="play-profile-text" style="margin-bottom: 0;">1789</p>
+        </div>
+        <!-- La apasarea butonului play-enemies-button apare div-ul play-current-players-div care afiseaza o lista ordonata cu inamicii din jocul curent -->
+        <button type="button" id="play-enemies-button" data-ng-click="setEnemiesVisible()">Enemies</button>
+      </div>
+    </div>
+
+    <!-- Div-ul play-footer-div are rol de footer in ecranul de joc, contine cele trei raspunsuri posibile la intrebar -->
+    <div class="play-footer-div">
+        <div id="option1" class="play-answer-column-div" data-ng-click="sendMyAnswer(0)">{{answers[0]}}</div>
+        <!-- data-ng-click="option(1)"  2 SI 3-->
+        <div id="option2" class="play-answer-column-div" data-ng-click="sendMyAnswer(1)">{{answers[1]}}</div>
+        <div id="option3" class="play-answer-column-div" data-ng-click="sendMyAnswer(2)">{{answers[2]}}</div>
+    </div>
+</div>
