@@ -9,6 +9,8 @@
   "dependencies": {
     "body-parser": "*",
     "express": "*",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "socket.io": "^2.0.1"
   },
   "author": "gashkaCangrena",

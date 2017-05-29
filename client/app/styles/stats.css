@@ -6,6 +6,12 @@
     margin: 0;
 }
 
+#winning-h2{
+  font-weight: bolder;
+  color: purple;
+  font-family: "FreeMono", sans-serif;
+}
+
 .stats-title{
   font-size: 4vw;
   color: white;

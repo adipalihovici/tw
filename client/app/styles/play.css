@@ -70,6 +70,19 @@
     border-color: #ffa203;
     transform: scale(1.0, 1.1) translateY(-7%);
 }
+#option0{
+  font-size: 2.5vmin;           /*Marime in functie de dimensiunea minima a ecranului => Responsive*/
+  border: solid 1vh;
+  width: 33.33%;                 /*Responsive*/
+  height: 100%;
+  line-height: 92%;              /*Micsoram diferenta default dintre randurile de text. Responsive*/
+  min-height: 100%;
+
+  background-color: rgba(31, 121, 254, 0.7);
+  font-weight: bold;
+  overflow: hidden;
+  border-color: #ffa203;
+}
 
 .play-middle-parent{
   display: flex;      /*Afisarea in coloane paralele a celor doua divuri centrale*/
@@ -264,9 +277,23 @@
     min-height: 33.33%;
     min-width: 100%;
   }
+  #option0{
+    font-size: 2.5vmin;           /*Marime in functie de dimensiunea minima a ecranului => Responsive*/
+    border: solid 1vh;
+    width: 100%;                /*Responsive*/
+    height: 33.33%;
+    line-height: 92%;              /*Micsoram diferenta default dintre randurile de text. Responsive*/
+    min-height: 33.33%;
+    min-width: 100%;
+
+    background-color: rgba(31, 121, 254, 0.7);
+    font-weight: bold;
+    overflow: hidden;
+    border-color: #ffa203;
+  }
   #play-me-button{
-    background-color: #cad8eb;
     opacity: .95;
+    background-color: #cad8eb;
     overflow: hidden;
     display: inline;
     width: auto;

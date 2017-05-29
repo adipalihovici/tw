@@ -10,10 +10,40 @@ var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 }
+
+
+
+var latestLoggedUser;
+var passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
+var localProfile;
+  passport.use('facebook', new FacebookStrategy( {
+    clientID: '1932507860364422',
+    clientSecret: '13ccadb9b8dd711faddbec2b34ca14d7',
+    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+    profileFields: ['id', 'displayName', 'name', 'gender', 'photos']
+  }, function(accessToken, refreshToken, profile, done) {
+        latestLoggedUser = {user: profile._json, accessToken: accessToken, refreshToken: refreshToken};
+        done(null, profile);
+}));
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+
+
+
 var app = express();
 app.use(allowCrossDomain);
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 var connections = [];
 var rooms = [];
@@ -23,16 +53,25 @@ app.listen(3000, function(){
   console.log('Server started at 3000...');
 })
 
+
 var io = new socketIo(3050);
+
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+passport.authenticate('facebook', { failureRedirect: 'http://localhost:9000/#!/login' }),
+function(req, res) {
+// absolute path
+    res.redirect('http://localhost:9000/#!/home');
+});
+
 
 app.get('/', function(req, res){
   res.send('In route. serverul te saluta');
 })
 
 app.get('/latestLogin', function (req, res) {
-  return res.json([
-    {id: Math.floor(Math.random()*100) + 1, level: Math.floor(Math.random()*2) + 1}
-  ]);
+  return res.json(latestLoggedUser);
 });
 
 app.use(allowCrossDomain);
@@ -77,9 +116,9 @@ io.sockets.on('connection', function(socket){
       }
 
       for(var i = 0; i < room.players.length; i++){
-        if(room.players[i].playerData.id == player.id){
+        if(room.players[i].playerData.id == player.playerData.id){
           room.players[i].score = -50;
-          console.log(player.id + ' pierde 50 de puncte');
+          console.log(player.playerData.id + ' pierde 50 de puncte');
         }
         else{
           if(room.players[i].socket != null){
@@ -136,7 +175,7 @@ io.sockets.on('connection', function(socket){
       refreshRoom(newRoom);
       var timer = setInterval(function(){
         refreshRoom(newRoom);
-      }, 20000);
+      }, 10000);
       roomTimers.push({roomName: newRoom.name, timer: timer});
     }
   });

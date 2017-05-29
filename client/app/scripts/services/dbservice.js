@@ -11,13 +11,13 @@ angular.module('funAtWebApp')
   .service('dbService', function ($http) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-     var myInfo = {id: -1, level: -1};
+     var myInfo = null;
 
     return {
 
       fetchUserInfo: function () {
 
-          if(myInfo.id > -1){
+          if(myInfo != null){
             return myInfo;
           }
           else{
@@ -33,7 +33,7 @@ angular.module('funAtWebApp')
       },
 
       initialized: function(){
-        if(myInfo.id>-1){
+        if(myInfo != null){
           return 1;
         }
         else{return 0;}
@@ -42,8 +42,8 @@ angular.module('funAtWebApp')
       setUserInfo: function (newUserInfo) {
 
 
-          myInfo.id = newUserInfo.id; myInfo.level = newUserInfo.level;
-          console.log('myInfo has been set to id = ' + myInfo.id + ' , level = '  + myInfo.level);
+          myInfo = newUserInfo;
+          console.log('myInfo has been set to id = ' + myInfo.user.id + ' , name = '  + myInfo.user.name);
 
       }
 

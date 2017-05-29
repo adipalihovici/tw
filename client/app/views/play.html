@@ -19,8 +19,10 @@
         <!-- div-ul play-player-profile-div apare in stanga ecranului la apasarea butonului play-me-button si contine informatii despre jucatorul curent -->
         <div class="play-player-profile-div" id="player-profile-id" data-ng-click="setProfileVisible()">
           <!-- poza de profil din /images/profiles  si alte date, sub forma de paragrafe-->
-          <img src="/images/profiles/k1.png" class="play-profile-pic"/>
-          <p class="play-username-p" style="margin: 0; padding: 0;"> ID : {{id}}</p>
+
+          <img src="/images/profiles/k1.png" class="play-profile-pic" id="my-image-id" alt="Imagine indisponibila"/> <!-- "/images/profiles/k1.png"-->
+
+          <p class="play-username-p" style="margin: 0; padding: 0;">{{name}}</p>
           <p class="play-profile-text" style="margin: 0; padding: 0;">{{myScore}} points</p>
           <p class="play-profile-text" style="margin: 0; padding: 0;">This is your game with number: 9</p>
           <!-- <p class="play-profile-text" style="margin: 0; padding: 0;">9</p> -->
@@ -34,8 +36,8 @@
         <!-- div-ul play-current-players-div apare in dreapta ecranului la apasarea butonului play-enemies-button si afiseaza o lista cu inamicii  -->
         <div class="play-current-enemy-div" id="player-enemy-id" data-ng-click="setEnemiesVisible()">
           <!-- lista cu inamicii, ordered list -->
-          <img src="/images/profiles/ocelot.jpg" class="play-profile-pic" alt="Imagine indisponibila"/>
-          <p class="play-username-p" style="margin: 0; padding: 0;"> ID : {{enemyId}}</p>
+          <img src="/images/profiles/ocelot.jpg" class="play-profile-pic" id="enemy-image-id" alt="Imagine indisponibila"/> <!--"/images/profiles/ocelot.jpg"-->
+          <p class="play-username-p" style="margin: 0; padding: 0;"> {{enemyName}}</p>
           <p class="play-profile-text" style="margin: 0; padding: 0;">{{enemyScore}} points</p>
           <p class="play-profile-text" style="margin: 0; padding: 0;">This is your game with number: 99</p>
           <!-- <p class="play-profile-text" style="margin: 0; padding: 0;">99</p> -->
@@ -49,6 +51,7 @@
 
     <!-- Div-ul play-footer-div are rol de footer in ecranul de joc, contine cele trei raspunsuri posibile la intrebar -->
     <div class="play-footer-div">
+        <div id="option0"></div>
         <div id="option1" class="play-answer-column-div" data-ng-click="sendMyAnswer(0)">{{answers[0]}}</div>
         <!-- data-ng-click="option(1)"  2 SI 3-->
         <div id="option2" class="play-answer-column-div" data-ng-click="sendMyAnswer(1)">{{answers[1]}}</div>

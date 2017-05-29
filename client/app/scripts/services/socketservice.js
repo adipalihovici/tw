@@ -21,7 +21,7 @@ angular.module('funAtWebApp')
     var roomName = 'gol';
     var alreadyAnswered = false;
     var winningState = '';
-    var notAbandoning = false;
+    var nuAbandonezEu = false;
 
 
 
@@ -45,7 +45,7 @@ angular.module('funAtWebApp')
     });
 
     socket.on('game over', function(data){
-      notAbandoning = true;
+      nuAbandonezEu = true;
       for(var i = 0; i < subscribersToGameOver.length; i++){
         console.log('data.winnerId='+data.winnerId);
         subscribersToGameOver[i](data);
@@ -55,33 +55,32 @@ angular.module('funAtWebApp')
     return{
 
       joinRoom: function(){
-        console.log(dbService.getUserInfo().id +  ' trimite join room');
-        socket.emit('join room', dbService.getUserInfo());
+        console.log(dbService.getUserInfo().user.id +  ' trimite join room');
+        socket.emit('join room', dbService.getUserInfo().user);
       },
 
       sendThisAnswer: function(answer){
         if(!alreadyAnswered){
-          console.log(dbService.getUserInfo().id + ' trimite raspunsul ' + answer + ' din camera ' + roomName);
+          console.log(dbService.getUserInfo().user.id + ' trimite raspunsul ' + answer + ' din camera ' + roomName);
           alreadyAnswered = true;
-          socket.emit('answer', {playerData: dbService.getUserInfo(), clientRoomName: roomName, answer: answer});
+          socket.emit('answer', {playerData: dbService.getUserInfo().user, clientRoomName: roomName, answer: answer});
         }
         else{
           console.log('Nu incerca sa trisezi ! Un raspuns a fost deja trimis ! ');
         }
       },
 
-      abandon: function(enemyId){
+      abandon: function(enemyName){
         var myInfo = dbService.getUserInfo();
-        console.log(myInfo.id + ' paraseste abandoneaza !');
+        console.log(myInfo.user.id + ' paraseste abandoneaza !');
         var grav = true;
-        if(enemyId == -1){
+        if(enemyName === 'gol'){
           grav = false;
         }
-        socket.emit('abandon', {playerData: myInfo, clientRoomName: roomName, grav: grav});
+        socket.emit('abandon', {playerData: myInfo.user, clientRoomName: roomName, grav: grav});
         if(grav){
           winningState = 'abandoned';
         }
-
       },
 
       subscribeToWaiting: function(callback){
@@ -116,12 +115,12 @@ angular.module('funAtWebApp')
         console.log('getting winningState');
         return winningState;
       },
-      setNotAbandoning: function(val){
-        console.log('setting notAbandoning ' + val);
-        notAbandoning = val;
+      setNuAbandonezEu: function(val){
+        console.log('setting nuAbandonezEu ' + val);
+        nuAbandonezEu = val;
       },
-      getNotAbandoning: function(){
-        return notAbandoning;
+      getNuAbandonezEu: function(){
+        return nuAbandonezEu;
       },
       clearAllSubscribers: function(){
         subscribersToGameOver.length = 0;

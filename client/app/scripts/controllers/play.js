@@ -10,18 +10,25 @@
  angular.module('funAtWebApp')
    .controller('PlayCtrl', function ($timeout, $scope, socketService, dbService, $route) {
      console.log('SE EXECUTA PLAY CTRL !!!');
-     $scope.id = -1;
-     $scope.enemyId = -1;
+     $scope.name = "gol";
+     $scope.enemyName = 'gol';
+     $scope.enemyInfo;
      $scope.roomNumber = -1;
 
      $scope.currentQuestion = '';
      $scope.answers = [];
      $scope.correctAnswer = -1;
+     document.getElementById('option0').style.display = "none";
+
      $scope.enemies = [];
      $scope.enemyScore = -1;
      $scope.myScore = 0;
+     socketService.setNuAbandonezEu(false);
 
-     $scope.id = dbService.getUserInfo().id;
+     $scope.name = dbService.getUserInfo().user.name;
+     console.log(dbService.getUserInfo().user.picture.data.url);
+     document.getElementById("my-image-id").src = dbService.getUserInfo().user.picture.data.url;
+
 
      socketService.joinRoom();
 
@@ -47,8 +54,11 @@
           document.getElementsByClassName("play-footer-div")[0].style.display = "inline-flex";
           document.getElementById("play-enemies-button").style.display = "inline-flex";
           document.getElementsByClassName("loader")[0].style.display = "none";
-          $scope.enemyId = data.enemyData.id;
+          $scope.enemyName = data.enemyData.name;
           $scope.roomNumber = data.roomNumber;
+          $scope.enemyInfo = data.enemyData;
+          document.getElementById("enemy-image-id").src = data.enemyData.picture.data.url;
+
           socketService.setRoomName('room'+data.roomNumber);
         });
       });
@@ -57,10 +67,16 @@
        $timeout(function() {
          console.log("New Question");
          $scope.currentQuestion = data.question.questionText;
+
+         document.getElementById('option0').style.display = 'none';
+         document.getElementById('option1').style.display = 'inline';
+         document.getElementById('option2').style.display = 'inline';
+         document.getElementById('option3').style.display = 'inline';
+
          $scope.answers[0] = data.question.answers[0];
          $scope.answers[1] = data.question.answers[1];
          $scope.answers[2] = data.question.answers[2];
-         if(data.score[0].id == dbService.getUserInfo().id){
+         if(data.score[0].id == dbService.getUserInfo().user.id){
            $scope.myScore = data.score[0].score;
            $scope.enemyScore = data.score[1].score;
          }
@@ -74,17 +90,17 @@
      socketService.subscribeToGameOver(function(data){
        $timeout(function(){
          console.log('Game Over');
-         if(data.winnerId == 0){
+         if(data.winnerId == '0'){
            socketService.setWinningState('tied');
            location.replace("http://localhost:9000/#!/stats");
            return;
          }
-         if(dbService.getUserInfo().id == data.winnerId){
+         if(dbService.getUserInfo().user.id == data.winnerId){
            socketService.setWinningState('won');
            location.replace("http://localhost:9000/#!/stats");
            return;
          }
-         if(dbService.getUserInfo().id != data.winnerId){
+         if(dbService.getUserInfo().user.id != data.winnerId){
            socketService.setWinningState('lost');
            location.replace("http://localhost:9000/#!/stats");
            return;
@@ -95,6 +111,13 @@
 
 
      function sendMyAnswer(answer) {
+       document.getElementById('option1').style.display = 'none';
+       document.getElementById('option2').style.display = 'none';
+       document.getElementById('option3').style.display = 'none';
+
+       document.getElementById('option0').style.display = 'inline';
+       document.getElementById('option0').style.margin = 'auto';
+       document.getElementById('option0').innerHTML = $scope.answers[answer];
        socketService.sendThisAnswer(answer);
      }
      $scope.sendMyAnswer = sendMyAnswer;
@@ -138,9 +161,9 @@
 
      $scope.$on('$routeChangeStart', function(next, current) {
        console.log('Left Play event caught !');
-       var notAbandoning = socketService.getNotAbandoning();
-       if(!notAbandoning){
-         socketService.abandon($scope.enemyId);
+       var nuAbandonezEu = socketService.getNuAbandonezEu();
+       if(!nuAbandonezEu){
+         socketService.abandon($scope.enemyName);
          socketService.clearAllSubscribers();
        }
        socketService.clearAllSubscribers();
