@@ -8,10 +8,9 @@
  * Controller of the funAtWebApp
  */
 angular.module('funAtWebApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AboutCtrl', function (dbService) {
+    if(dbService.initialized() === 0){
+        location.replace("http://localhost:9000/#!/");
+        return;
+    }
   });

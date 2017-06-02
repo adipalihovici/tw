@@ -9,6 +9,12 @@
  */
 angular.module('funAtWebApp')
   .controller('StatsCtrl', function ($scope, dbService, socketService) {
+
+    if(dbService.initialized() === 0){
+        location.replace("http://localhost:9000/#!/login");
+        return;
+    }
+
     $scope.deznodamant = '';
     console.log('socketService.getWinningState = ' + socketService.getWinningState());
     if(socketService.getWinningState() == 'won'){

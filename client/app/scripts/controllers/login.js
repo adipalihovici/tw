@@ -9,4 +9,5 @@
  */
 angular.module('funAtWebApp')
   .controller('LoginCtrl', function ($scope) {
+    document.getElementById("menu-header").style.display = "none";
   });

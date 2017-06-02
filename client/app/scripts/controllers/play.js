@@ -10,6 +10,12 @@
  angular.module('funAtWebApp')
    .controller('PlayCtrl', function ($timeout, $scope, socketService, dbService, $route) {
      console.log('SE EXECUTA PLAY CTRL !!!');
+
+     if(dbService.initialized() === 0){
+         location.replace("http://localhost:9000/#!/");
+         return;
+     }
+
      $scope.name = "gol";
      $scope.enemyName = 'gol';
      $scope.enemyInfo;
@@ -41,6 +47,10 @@
          // console.log("RoomState : " + data.correctAnswer);
          $timeout(function() {
            console.log("se executa Waiting ...");
+           if(data.roomNumber === -1){
+             location.replace("http://localhost:9000/#!/home");
+             return;
+           }
            $scope.currentQuestion = 'Waiting in room ' + data.roomNumber + ' ... ';
            $scope.roomNumber = data.roomNumber;
            socketService.setRoomName('room'+data.roomNumber);

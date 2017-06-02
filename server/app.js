@@ -48,6 +48,7 @@ app.use(passport.session());
 var connections = [];
 var rooms = [];
 var roomTimers = [];
+var nowPlaying = [];
 
 app.listen(3000, function(){
   console.log('Server started at 3000...');
@@ -59,7 +60,7 @@ var io = new socketIo(3050);
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-passport.authenticate('facebook', { failureRedirect: 'http://localhost:9000/#!/login' }),
+passport.authenticate('facebook', { failureRedirect: 'http://localhost:9000/#!/login'}),
 function(req, res) {
 // absolute path
     res.redirect('http://localhost:9000/#!/home');
@@ -116,6 +117,12 @@ io.sockets.on('connection', function(socket){
       }
 
       for(var i = 0; i < room.players.length; i++){
+        for(var pla = 0; pla < nowPlaying.length; pla++){
+          if(nowPlaying[pla].id === room.players[i].playerData.id){
+            console.log('Game over => ' + nowPlaying[pla].id + ' a fost scos din nowPlaying !');
+            nowPlaying.splice(pla, 1);
+          }
+        }
         if(room.players[i].playerData.id == player.playerData.id){
           room.players[i].score = -50;
           console.log(player.playerData.id + ' pierde 50 de puncte');
@@ -127,15 +134,20 @@ io.sockets.on('connection', function(socket){
         }
       }
       updateDatabaseGameOver(room);
-
       console.log('Disconnected: %s sockets connected', connections.length);
   });
 
 
 
   socket.on('join room',  function(data){
-    console.log(data.id + ' vrea sa intre intr-o camera. El e de nivel ' + data.level);
-
+    for(var pla = 0; pla < nowPlaying.length; pla++){
+      console.log(data.id + ' vrea sa intre intr-o camera. El e de nivel ' + data.level);
+      if(nowPlaying[pla].id === data.id){
+        console.log('Din pacate ' + data.id + ' e deja activ');
+        socket.emit('waiting', {roomNumber: -1});
+        return;
+      }
+    }
     var newRoom = findMeARoom(data);
     if(newRoom == null){
         var maxRoomNumber = -1; var flag = 0;
@@ -157,8 +169,8 @@ io.sockets.on('connection', function(socket){
       socket.join(newRoom.name, function(){
         console.log(socket.id + ' intra singur in camera ' + newRoom.number);
       });
-      console.log(data.id + ' intra singur in camera ' + newRoom.number);
       socket.emit('waiting', {roomNumber: newRoom.number});
+      console.log(data.id + ' intra singur in camera ' + newRoom.number);
     }
 
     else{
@@ -178,6 +190,7 @@ io.sockets.on('connection', function(socket){
       }, 10000);
       roomTimers.push({roomName: newRoom.name, timer: timer});
     }
+    nowPlaying.push(data);
   });
 
   socket.on('answer', function(data){
@@ -208,6 +221,15 @@ io.sockets.on('connection', function(socket){
         if(room.number == rooms[i].number){
           console.log('Se sterge camera '+ rooms[i].number + ' din cauze abandonului');
           rooms.splice(i, 1);
+        }
+      }
+
+      for(var i = 0; i < room.players.length; i++){
+        for(var pla = 0; pla < nowPlaying.length; pla++){
+          if(nowPlaying[pla].id == room.players[i].playerData.id){
+            console.log('Game over => ' + nowPlaying[pla].id + ' a fost scos din nowPlaying !');
+            nowPlaying.splice(pla, 1);
+          }
         }
       }
 
@@ -450,6 +472,14 @@ refreshRoom = function(room){
       if(room.number == rooms[i].number){
         console.log('Se sterge camera '+ rooms[i].number);
         rooms.splice(i, 1);
+        for(var i = 0; i < room.players.length; i++){
+          for(var pla = 0; pla < nowPlaying.length; pla++){
+            if(nowPlaying[pla].id === room.players[i].playerData.id){
+              console.log('Game over => ' + nowPlaying[pla].id + ' a fost scos din nowPlaying !');
+              nowPlaying.splice(pla, 1);
+            }
+          }
+        }
       }
     }
     //// UPDATE IN BAZA DE DATE LA CELE DOUA ID-URI POINTS , LEVEL , GAMES WON , GAMES PLAYED

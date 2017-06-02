@@ -52,6 +52,6 @@ angular
         // controllerAs: 'home'
       })
       .otherwise({
-        redirectTo: '/home.html'
+        redirectTo: 'views/home.html'
       });
   });
