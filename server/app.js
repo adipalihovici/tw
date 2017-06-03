@@ -93,7 +93,7 @@ io.sockets.on('connection', function(socket){
       var player = null;
       for(var i = 0; i < rooms.length; i++){
         for(var j = 0; j < rooms[i].players.length; j++){
-          if(rooms[i].players[j].socket.id == socket.id){
+          if((rooms[i].players[j].socket != null) && (rooms[i].players[j].socket.id == socket.id)){
             room = rooms[i];
             player = rooms[i].players[j];
             found = true;
@@ -253,15 +253,31 @@ io.sockets.on('connection', function(socket){
 
 app.post('/joinroom', function(req, res){
   var postMan = req.body;
-  if(!userExists(postMan.id)){
+  if((postMan.id === undefined) || (postMan.name === undefined) || (postMan.level === undefined)){
     return res.status(404).json([
       {
-        errorMessage: 'User does not exist !'
+        errorMessage: 'Invalid data format'
       }
     ])
   }
-
+  if(!userExists(postMan.id)){
+    return res.status(404).json([
+      {
+        errorMessage: 'User does not exist in the Fun@Web database'
+      }
+    ])
+  }
   console.log("PostMan " + postMan.name + " vrea sa intre in camera !");
+  for(var pla = 0; pla < nowPlaying.length; pla++){
+    if(nowPlaying[pla].id == postMan.id){
+      return res.status(404).json([
+        {
+          errorMessage: 'User already active in a room'
+        }
+      ])
+    }
+  }
+
 
   var newRoom = findMeARoom(postMan);
   var maxRoomNumber = 0;
@@ -281,6 +297,7 @@ app.post('/joinroom', function(req, res){
     questionIndex: 0
   };
   rooms.push(newRoom);
+  nowPlaying.push(postMan);
 
   console.log(postMan.name + ' intra singur in camera ' + newRoom.number);
   return res.json([
@@ -296,13 +313,13 @@ app.post('/joinroom', function(req, res){
       return res.status(400).json([{message: 'You already are in this room. Pay attention !'}]);
     }
     newRoom.players.push({playerData: postMan, socket: null, score: 0, answerSubmitted: false});
+    nowPlaying.push(postMan)
     if(auxiliary.socketsExistInRoom(newRoom)){
         newRoom.players[0].socket.emit('enemy found', {enemyData: postMan, roomNumber: newRoom.number});
     }
 
     /////// RASPUNS JSON INSTEAD socket.emit('enemy found', {enemyData: newRoom.players[0].playerData, roomNumber: newRoom.number});
     console.log('I-am gasit camera cu adversar lui ' + postMan.name + '. Va intra in ' + newRoom.name);
-
     refreshRoom(newRoom);
     var timer = setInterval(function(){
       refreshRoom(newRoom);
@@ -319,8 +336,23 @@ app.post('/joinroom', function(req, res){
 
 
 app.post('/answer', function(req, res){
-  console.log('Serverul a primit POST /answer de la ' + postMan.playerData.name + ' din camera ' + postMan.roomNumber);
   var postMan = req.body;
+  if((postMan.playerData === undefined) || (postMan.playerData.id === undefined) || (postMan.playerData.name === undefined) || (postMan.roomNumber === undefined) ||
+                  (postMan.roomNumber === undefined) ){
+    return res.status(404).json([
+      {
+        errorMessage: 'Invalid data format'
+      }
+    ])
+  }
+  if(!userExists(postMan.playerData.id)){
+    return res.status(404).json([
+      {
+        errorMessage: 'User does not exist in the Fun@Web database'
+      }
+    ])
+  }
+  console.log('Serverul a primit POST /answer de la ' + postMan.playerData.name + ' din camera ' + postMan.roomNumber);
   var room = roomWithNumber(postMan.roomNumber);
   if(room == null){
     return res.status(400).json([{message: 'The room you specified does not exist. Pay attention !'}]);
@@ -348,7 +380,22 @@ app.post('/answer', function(req, res){
 });
 
 app.get('/getRoomState', function(req, res){
-  var postMan = {playerData: {id: -1, name: 'gol', level: -1}, roomNumber: -1};
+  var postMan = {playerData: {id: '-1', name: 'gol', level: -1}, roomNumber: -1};
+  if((req.query.id === undefined) || (req.query.name === undefined) || (req.query.level === undefined) ||
+                  (req.query.roomNumber === undefined) ){
+    return res.status(404).json([
+      {
+        errorMessage: 'Invalid data format'
+      }
+    ])
+  }
+  if(!userExists(parseInt(postMan.playerData.id))){
+    return res.status(404).json([
+      {
+        errorMessage: 'User does not exist in the Fun@Web database'
+      }
+    ])
+  }
   postMan.playerData.id = req.query.id; postMan.playerData.name = '' + req.query.name; postMan.playerData.level = req.query.level;
   postMan.roomNumber = req.query.roomNumber;
   console.log('Serverul a primit GET /getRoomState de la ' + postMan.playerData.name + ' din camera ' + postMan.roomNumber);
@@ -399,9 +446,24 @@ app.get('/getRoomState', function(req, res){
 });
 
 app.post('/disconnect', function(req, res){
-
   var postMan = req.body;
-  console.log('Serverul a primit POST /answer de la ' + postMan.playerData.name + ' din camera ' + postMan.roomNumber);
+  if((postMan.playerData === undefined) || (postMan.playerData.id === undefined) || (postMan.playerData.name === undefined) || (postMan.roomNumber === undefined) ||
+                  (postMan.roomNumber === undefined) ){
+    return res.status(404).json([
+      {
+        errorMessage: 'Invalid data format'
+      }
+    ])
+  }
+  if(!userExists(postMan.playerData.id)){
+    return res.status(404).json([
+      {
+        errorMessage: 'User does not exist in the Fun@Web database'
+      }
+    ])
+  }
+
+  console.log('Serverul a primit POST /disconnect de la ' + postMan.playerData.name + ' din camera ' + postMan.roomNumber);
   var room = roomWithNumber(postMan.roomNumber);
   if(room == null){
     return res.status(400).json([{message: 'The room you specified does not exist. Pay attention !'}]);
@@ -420,6 +482,12 @@ app.post('/disconnect', function(req, res){
   }
 
   for(var i = 0; i < room.players.length; i++){
+    for(var pla = 0; pla < nowPlaying.length; pla++){
+      if(nowPlaying[pla].id === room.players[i].playerData.id){
+        console.log('Game over => ' + nowPlaying[pla].id + ' a fost scos din nowPlaying !');
+        nowPlaying.splice(pla, 1);
+      }
+    }
       if(room.players[i].playerData.id == postMan.playerData.id){
         room.players[i].score = -50;
         console.log(postMan.playerData.id + ' pierde 50 de puncte');
@@ -493,7 +561,7 @@ updateDatabaseGameOver = function(room){ ///////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 function userExists(id){
-  return (id%2==0);
+  return true;
 }
 
 function findMeARoom(userInfo) {  /////////  Pentru un user de un anumit nivel gaseste o camera
