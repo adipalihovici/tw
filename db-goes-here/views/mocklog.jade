@@ -1,0 +1,38 @@
+extends layout
+
+block content
+	h3=title
+	form#form_add_question(name="mocklog", method="post",action="/userlog")
+		span FirstName
+		span &nbsp;
+		input#input_question(type="text", placeholder="Duhmi", name="first_name")
+		br
+		br
+		span LastName
+		span &nbsp;
+		input#input_a1(type="text", placeholder="Pinguinescool", name="last_name")
+		br
+		br
+		span Gender
+		span &nbsp;
+		input#input_a2(type="text", placeholder="male", name="gender")
+		br
+		br
+		span GameCount
+		span &nbsp;
+		input#input_a3(type="number", placeholder= 0, name="gamecount")
+		br
+		br
+		span Points
+		span &nbsp;
+		input#input_rightanswer(type="number", placeholder=0, name="points")
+		br
+		span AccessToken
+		span &nbsp;
+		input#input_diff(type="text", placeholder="0", name="accesstoken")
+		br
+		span RefreshToken
+		span &nbsp;
+		input#input_diff(type="text", placeholder="0", name="refreshtoken")
+		br
+		button#submit_question(type="submit") submit
