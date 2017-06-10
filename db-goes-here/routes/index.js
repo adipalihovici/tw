@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb');
 var ObjectId = require('mongodb').ObjectID;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -90,7 +91,7 @@ router.post('/addquestion', function(req,res){
 	var MongoClient = mongodb.MongoClient;
  
     // Define where the MongoDB server is
-    var url = 'mongodb://localhost:27017/sample';
+    var url = 'mongodb://DummyUser:10laTW@ds137891.mlab.com:37891/tw';
  
     // Connect to the server
     MongoClient.connect(url, function(err, db){
@@ -167,7 +168,7 @@ router.post('/userlog', function(req,res){
   var MongoClient = mongodb.MongoClient;
  
     // Define where the MongoDB server is
-    var url = 'mongodb://localhost:27017/sample';
+    var url = 'mongodb://DummyUser:10laTW@ds137891.mlab.com:37891/tw';
  
     // Connect to the server
     MongoClient.connect(url, function(err, db){
@@ -184,7 +185,7 @@ router.post('/userlog', function(req,res){
           //a2: req.body.a2, a3: req.body.a3, rightanswer: req.body.rightanswer, diff: req.body.diff};
         //var bulk = db.items.initializeUnorderedBulkOp();
         // Insert the student data into the database
-        collection.update({"first_name": req.body.first_name, "last_name": req.body.last_name}, { $setOnInsert: {"gender": req.body.gender, "gamecount": req.body.gamecount, "points": req.body.points, "accesstoken": req.body.accesstoken, "refreshtoken": req.body.refreshtoken, "photo": "1" }}, { upsert: true }, function (err, result){
+        collection.update({"first_name": req.body.first_name, "last_name": req.body.last_name}, { $set: {"gender": req.body.gender, "gamecount": req.body.gamecount, "points": req.body.points, "accesstoken": req.body.accesstoken, "refreshtoken": req.body.refreshtoken, "photo": "1" }}, { upsert: true }, function (err, result){
           if (err) {
             console.log(err);
           } else {
