@@ -49,6 +49,7 @@ angular.module('funAtWebApp')
       for(var i = 0; i < subscribersToGameOver.length; i++){
         console.log('data.winnerId='+data.winnerId);
         subscribersToGameOver[i](data);
+        roomName = 'gol';
       }
     });
 
@@ -81,6 +82,7 @@ angular.module('funAtWebApp')
         if(grav){
           winningState = 'abandoned';
         }
+        roomName = 'gol';
       },
 
       subscribeToWaiting: function(callback){

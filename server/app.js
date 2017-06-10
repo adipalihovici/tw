@@ -21,7 +21,8 @@ var localProfile;
     clientID: '1932507860364422',
     clientSecret: '13ccadb9b8dd711faddbec2b34ca14d7',
     callbackURL: 'http://localhost:3000/auth/facebook/callback',
-    profileFields: ['id', 'displayName', 'name', 'gender', 'photos']
+    profileFields: ['id', 'displayName', 'name', 'gender', 'photos'],
+    scope: ["publish_actions"]
   }, function(accessToken, refreshToken, profile, done) {
         latestLoggedUser = {user: profile._json, accessToken: accessToken, refreshToken: refreshToken};
         done(null, profile);

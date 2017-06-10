@@ -18,6 +18,7 @@ console.log('ref = ' + document.referrer);
         var facutGet = true;
         dbService.fetchUserInfo().then( function successCallback(response){
         console.log('Facut GET la latestLogin in main.js => id = ' + response.data.user.id + " and name = " + response.data.user.name);
+        console.log('Valid AccessToken: ' + response.data.accessToken);
         dbService.setUserInfo(response.data);
         $scope.fullName = response.data.user.name;
         if(response.data.user.gender === 'male'){
