@@ -5,7 +5,7 @@ var socketIo = require('socket.io');
 var auxiliary = require('funweb-functions');
 
 var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+    res.header('Access-Control-Allow-Origin', "http://localhost:9000");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
@@ -25,6 +25,10 @@ var localProfile;
     scope: ["publish_actions"]
   }, function(accessToken, refreshToken, profile, done) {
         latestLoggedUser = {user: profile._json, accessToken: accessToken, refreshToken: refreshToken};
+
+        ///////////////////////   UPSERT PENTRU PROFIL /////////////////////////////////////////////////////////////////////////////
+        upsertLoggedPlayer(profile._json, accessToken, refreshToken);
+
         done(null, profile);
 }));
 passport.serializeUser(function(user, done) {
@@ -556,11 +560,6 @@ refreshRoom = function(room){
   }
 };
 
-updateDatabaseGameOver = function(room){ ///////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  console.log('Update in DB ' + room.name);
-  return true;
-}
-
 function userExists(id){
   return true;
 }
@@ -573,10 +572,6 @@ function findMeARoom(userInfo) {  /////////  Pentru un user de un anumit nivel g
       }
     }
     return null;
-}
-
-function questionsForRoomWithLevel(howMany, level){
-  return questionDB;
 }
 
 function removeTimer(roomName){
@@ -658,6 +653,32 @@ function sendTimer() {
 
 //Set the function to reapeat every second
 setInterval(sendTimer, 1000);
+
+
+function upsertLoggedPlayer(profile, accessToken, refreshToken){
+  /////////////// UPSERT PLAYER//////////////////////////////////////////////////////
+  return true;
+}
+
+
+function questionsForRoomWithLevel(howMany, level){
+
+  ///////////////////////// INTEROGARE BD PT A OBTINE howMany intrebari in f de level
+
+  return questionDB;
+}
+
+
+updateDatabaseGameOver = function(room){
+
+///////////////////// UPDATE IN BD PENTRU FIECARE JUCATOR CU NR DE PUNCTE OBTINUTE JOCUL ASTA //////////////////////////////////////
+
+  console.log('Update in DB ' + room.name);
+  return true;
+}
+
+
+
 
 questionDB = [
 {
