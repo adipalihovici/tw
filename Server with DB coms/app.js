@@ -586,7 +586,8 @@ updateDatabaseGameOver = function(room){ ///////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           else{
             console.log("Game count updated");
             for(var i = 0; i < room.players.length; i++){
-            collection.update({"_id" : room.players[i].playerData.id},{ $inc: {"gamecount" :1, "points": room.players[i].score} , $set: {level: Math.floor((value.gamecount+1)/10)}}, function (err, result){
+              //aici issue la level
+            collection.update({"_id" : room.players[i].playerData.id},{ $inc: {"gamecount" :1, "points": room.players[i].score} , $set: {level: Math.floor((points+1)/10)}}, function (err, result){
               if (err) {
                 console.log(err);
               }
