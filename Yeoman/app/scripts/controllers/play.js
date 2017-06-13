@@ -57,18 +57,8 @@
          });
        });
 
-      // $scope.timer = 10;
-
       socketService.subscribeToEnemyFound(function(data){
         $timeout(function() {
-          //// SETINTEVAL(FUNTIE CARE MODFICA TIMERUL DE LA X LA X-1, 1000);
-          function countDown(){
-            if(timer>0){
-              timer--;
-            }
-            setInterval(countDown,0);
-          }
-
           console.log("Enemy Found");
           document.getElementsByClassName("play-current-enemy-div")[0].style.display = "inline";
           document.getElementsByClassName("play-footer-div")[0].style.display = "inline-flex";
@@ -84,7 +74,15 @@
       });
 
      socketService.subscribeToNewQuestionAndScore(function(data){
+
        $timeout(function() {
+          $scope.timer = 10;
+         setInterval(function(){
+            if($scope.timer>0){
+              $scope.timer--;
+            }
+        },1000);
+        
          console.log("New Question");
          $scope.currentQuestion = data.question.questionText;
 
