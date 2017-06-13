@@ -1,0 +1,35 @@
+@import url("fonts.css");
+
+.home-main-div{
+    /*position: static;*/
+    display: block;
+    width: 100vw;
+    color: black;
+    font-family: "FreeMono", monospace; /*font importat din fonts.css*/
+    text-align: center;
+    font-size: 5vmin;
+    clear: both;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    left: 0;
+    right: 0;
+}
+
+.home-player-profile-div{
+    background-color: lightblue;
+    opacity: 0.9;
+    border-radius: 3vw;
+    border-color: blue;
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    text-align: center;
+
+    font-size: 5vmin;
+    width: 100vw;
+}
+
+.home-h3{
+  font-size: 3vmin;
+}

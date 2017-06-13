@@ -1,0 +1,54 @@
+@import url("fonts.css");
+body{
+    margin: 0;
+    padding: 0;
+    background: no-repeat center center fixed;
+    background-size: cover;
+    color: #FFF;
+    font-family: "FreeMono", monospace;
+    text-align: center;
+    font-size: 2vw;
+}
+header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.object{
+    width: 15vw;
+    padding: 3vw;
+    padding-top: 30vh;
+}
+.object:hover{
+    transform: scale(1.5, 1.5);
+}
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #333;
+    transform: translateY(4px);
+}
+footer {
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    height: 3em;
+    background-color: rgba(0,0,0,0.5);
+}

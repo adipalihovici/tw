@@ -1,0 +1,398 @@
+@import url("fonts.css");
+
+.play-main-div{
+  /*Div-ul play-main-div este div-ul principal, continutul sau reprezinta de fapt view-ul*/
+            /*care se va inlocui in index.html la accesarea /play;*/
+    position: static;
+    display: block;  /*div-ul trebuie sa ocupe toata latimea paginii*/
+    width: 100vw;  /*Responsive, in functie de latimea ecranului*/
+    height: 89vh; /*inaltimea astfel incat sa nu obtureze panoul de meniu. Responsive, in functie de inaltimea ecranului*/
+    background-size: contain; /*imaginea se va repeta in interiorul div-ului, dar aceasta este tileable*/
+    overflow: hidden; /*continuturile divului nu inunda exteriorul*/
+    color: #FFF;
+    font-family: "FreeMono", monospace; /*font importat din fonts.css*/
+    text-align: center;
+    font-size: 2vw; /*Responsive in functie de latimea ecranului*/
+    /*background-image: url('/images/backgrounds/tileable-blue.jpg');*/
+    clear: both; /*div-ul nu accepta continuturile altui div sa faca float peste el*/
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    left: 0;
+    right: 0;
+}
+
+ /*play-health-div este divul care apare in partea superioara a ecranului in care se desfasoara jocul.*/
+            /*Aici se afiseaza "viata" jucatorulu; */
+.play-health-div{
+    width: 100%; /*100% din latimea parintelui, play-main-div => Responsive*/
+    height: auto; /*In functie de dimensiunea intrebarii care vine de la server => Responsive*/
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow:hidden; /*continuturile divului nu inunda exteriorul*/
+}
+
+.current-question-h1{
+  font-size: 4vmin;  /*marime in functie de dimensiunea minima a ecranului => Responsive*/
+  margin: 0;
+  padding: 0;
+}
+
+/*Div-ul play-footer-div are rol de footer in ecranul de joc, contine cele trei raspunsuri posibile la intrebar*/
+.play-footer-div{
+    display: inline-flex; /*Pentru ca intrebarile(div-uri) sa poata aparea in coloane paralele*/
+    position: absolute;   /*Pentru a cobora in josul div-ului parinte*/
+    margin-left: 0px;
+    padding-left: 0px;
+    border-left: 0px;
+    height: 28%;          /*Dimensiuni relative la cele ale parintelui => Responsive*/
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 20%;       /*Oricat de mici ar fi raspunsurile, inaltimea divului de jos sa nu coboare sub 20% din parinte*/
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+/*Raspunsurile la intrebari*/
+.play-answer-column-div{
+  font-size: 2.5vmin;           /*Marime in functie de dimensiunea minima a ecranului => Responsive*/
+  border: solid 1vh lightblue;    /*Bordura pentru fiecare dintre raspunsuri. Dimensionata responsive*/
+  width: 33.33%;                 /*Responsive*/
+  height: 100%;
+  line-height: 92%;              /*Micsoram diferenta default dintre randurile de text. Responsive*/
+  cursor: pointer;               /*Cursorul se modifica cand este deasupra raspunsurilor*/
+  min-height: 100%;             /*Indiferent de inaltimea parintelui(footer), coloanele de raspuns vor ocupa tot parintele*/
+}
+.play-answer-column-div:hover{ /*Se modifica stilul fiecarui raspuns la hover*/
+    background-color: rgba(0,0,125,0.75);
+    color: white;
+    font-size: 1.2em;
+    overflow: hidden;
+    border-color: blue;
+}
+
+#option0{
+  font-size: 2.5vmin;           /*Marime in functie de dimensiunea minima a ecranului => Responsive*/
+  border: solid 1vh;
+  width: 33.33%;                 /*Responsive*/
+  height: 100%;
+  line-height: 92%;              /*Micsoram diferenta default dintre randurile de text. Responsive*/
+  min-height: 100%;
+
+  background-color: rgba(31, 121, 254, 0.7);
+  font-weight: bold;
+  overflow: hidden;
+  border-color: #ffa203;
+}
+
+.play-middle-parent{
+  display: flex;      /*Afisarea in coloane paralele a celor doua divuri centrale*/
+  justify-content: space-between;   /*Impingerea in laturi opuse a divurilor copii*/
+}
+
+/*Div-ul cu detaliile jucatorului. Apare in st*/
+.play-player-profile-div{
+    background-color: lightblue;
+    opacity: 0.9;
+    display: inline;
+    overflow: hidden;
+    width: 25vw;     /* Dimensiuni in functie de cele ale ecranului => Responsive*/
+    height: 30vmin;
+    line-height: 85%;
+    top: 0;
+    margin-left: 0;
+    margin-top: 1.5vh;
+    margin-left: .2vw;
+    clear: both;
+    visibility: hidden;         /*Apare pe ecran abia dupa ce este apasat butonul 'Me'*/
+    border-radius: 3vw;
+    border-color: blue;
+    border-style: solid;
+    left: 4.2vw;
+}
+
+    /*Div-ul in care va apare lista cu inamicii*/
+.play-current-enemy-div{
+  background-color: lightblue;
+  opacity: 0.9;
+  display: inline;
+  position: relative;
+  float: right;
+  width: 25vw;
+  height: 30vmin;
+  top: 0;
+  margin: 0;
+  margin-top: 1.5vh;
+  margin-right: .2vw;
+  border-radius: 3vw;
+  border-color: blue;
+  border-style: solid;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;          /* Apare pe ecran dupa apasarea butonului 'Enemies'  */
+}
+
+   /*Fotografia de profil*/
+.play-profile-pic{
+  display: block;         /* Ocupa intreaga lungime a */
+  width: 11vmin;          /*Dimensiuni in functie de cele ale ecranului => Responisve*/
+  height: 11vmin;
+  margin: auto;            /* Va aparea centrata*/
+  border-radius: 50%;      /* Forma de cerc*/
+  border: solid;
+  border-color: #fe1d00;
+  clear: both;
+}
+
+    /*Paragraf cu username-ul*/
+.play-username-p{
+    display: block;       /*Ocupa intreaga latime*/
+    position: static;
+    margin-left: 0;
+    font-family: 'FreeMono', monospace;       /*Font din fonts.css*/
+    font-style: italic;
+    font-size: 3vmin;         /*Dimensiune responsive*/
+    font-weight: bold;
+    color: #da530f;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+    right: 0;
+    left: 0;
+    /*font-weight: bold;*/
+}
+
+    /*Detaliile despre jucator, un paragraf*/
+.play-profile-text{
+  display: block;
+  position: static;
+  /*margin-left: 1vw;*/
+  font-family: 'FreeMono', monospace;
+  font-style: italic;
+  font-size: 2vmin;
+  color: black;
+  font-weight: bold;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+}
+
+    /*Username-ul unui inamic*/
+.play-current-player{
+  font-family: "FreeMono", monospace;
+  font-size: 2vmin;      /*Dimensoinat responsive*/
+  font-style: italic;
+  font-weight: bold;
+  color: #531000;
+}
+
+    /*Buton care afiseaza play-player-profile-div*/
+#play-me-button{
+  background-color: lightblue;
+  opacity: .95;
+  overflow: hidden;
+  display: inline;
+  width: auto;
+  height: 4vh;       /*Toate dimensiunile sunt responsive mai putin bordura, de un pixel*/
+  border: solid 1px blue;
+  border-radius: .5vh;
+  color: #da530f;
+  top: 0;
+  margin: 0;
+  margin-top: 1.5vh;
+  font-size: 2vmin;
+  clear: both;
+  float: left;        /*Butonul se va lipi de marginea din stanga*/
+}
+
+    /*Buton care afiseaza play-current-players-div*/
+#play-enemies-button{
+  background-color: lightblue;
+  opacity: .95;
+  display: inline;
+  width: auto;          /*Toate dimensiunile sunt relative => Responsive*/
+  height: 4vh;
+  border: solid 1px blue;
+  border-radius: .5vh;
+  float: right;         /*Butonul se va lipi de marginea din dreapta*/
+  margin: 0;
+  margin-right: .5vw;
+  color: #da530f;
+  top: 0;
+  font-size: 2.5vmin;
+  clear: both;
+}
+.loader {
+  border: 3vmin solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4vmin solid rgb(91, 69, 228);
+  border-right: 4vmin solid rgb(56, 198, 111);
+  border-bottom: 4vmin solid rgb(207, 53, 51);
+  border-left: 4vmin solid pink;
+  width: 35vmin;
+  height: 35vmin;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ------------------TIMER--------------------------- */
+.timer-h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 16px;
+}
+
+@media all and (orientation: portrait) {     /*Cand utilizatorul foloseste site-ul in mod portrait pe telefon/tableta, atunci apar cateva modificari*/
+    /*Div-ul incare vor apare raspunsurile posibile*/
+  .play-footer-div {
+    display: flex;
+    justify-content: space-between;
+      flex-direction: column;       /*Modificam flex-direction care este default 'row'. Acum devine column*/
+      position: absolute;
+      margin-left: 0px;
+      padding-left: 0px;
+      border-left: 0px;
+      height: 35%;        /*Se mareste inaltimea relativa la parinte, ramanand responsive*/
+      width: 100%;
+      /*overflow: hidden;*/
+      left: 0;
+      right: 0;
+      bottom: 0;
+      min-height: 20%;
+      background-color: rgba(0, 0, 0, 0.75);
+  }
+  /*Raspunsurile apar pe randuri paralele in play-footer-div*/
+  .play-answer-column-div{
+    font-size: 2.5vmin;
+    border: solid .6vw #b188fe;
+    width: 100%;          /*Late cat parintele*/
+    height: 33.33%;      /*Fiind trei si ocupand inaltime egala => fiecare 33.33%*/
+    line-height: 92%;
+    cursor: pointer;
+    min-height: 33.33%;
+    min-width: 100%;
+  }
+  #option0{
+    font-size: 2.5vmin;           /*Marime in functie de dimensiunea minima a ecranului => Responsive*/
+    border: solid 1vh;
+    width: 100%;                /*Responsive*/
+    height: 33.33%;
+    line-height: 92%;              /*Micsoram diferenta default dintre randurile de text. Responsive*/
+    min-height: 33.33%;
+    min-width: 100%;
+
+    background-color: rgba(31, 121, 254, 0.7);
+    font-weight: bold;
+    overflow: hidden;
+    border-color: #ffa203;
+  }
+  #play-me-button{
+    opacity: .95;
+    background-color: lightblue;
+    overflow: hidden;
+    display: inline;
+    width: auto;
+    height: 8vh;    /*Creste inaltimea*/
+    border: solid 1px blue;
+    border-radius: .5vh;
+    color: #da530f;
+    top: 0;
+    margin: 0;
+    margin-top: 1.5vh;
+    font-size: .8em;
+    clear: both;
+    float: left;
+  }
+
+  #play-enemies-button{
+    background-color: lightblue;
+    opacity: .95;
+    display: inline;
+    width: auto;
+    height: 8vh;       /*Creste inaltimea*/
+    border: solid 1px blue;
+    border-radius: .5vh;
+    float: right;
+    margin: 0;
+    margin-top: 1.5vh;
+    margin-right: .5vw;
+    color: #da530f;
+    top: 0;
+    font-size: .8em;
+    clear: both;
+  }
+  .play-player-profile-div{
+      background-color: lightblue;
+      opacity: 0.9;
+      display: inline;
+      overflow: hidden;
+      width: 32vw;
+      height: 30vmin;
+      top: 0;
+      margin-left: 0;
+      margin-top: 1.5vh;
+      clear: both;
+      visibility: hidden;
+      border-radius: 3vw;
+      left: 4.2vw;
+  }
+  .play-current-enemy-div{
+    background-color: lightblue;
+    opacity: 0.9;
+    display: inline;
+    position: relative;
+    float: right;
+    width: 32vw;
+    height: auto;
+    line-height:85%;
+    top: 0;
+    margin: 0;
+    margin-top: 1.5vh;
+    border-radius: 3vw;
+    overflow: hidden;
+    clear: both;
+    visibility: hidden;
+  }
+}

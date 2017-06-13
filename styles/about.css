@@ -1,0 +1,39 @@
+.about-container-div {
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.about-main-div {
+    display: block;
+    width: 100vw;
+    color: black;
+    font-family: "FreeSans", sans-serif;
+    text-align: center;
+    font-size: 16px;
+    clear: both;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    left: 0;
+    right: 0;
+}
+.about-div {
+    background-color: lightblue;
+    opacity: 0.9;
+    width: 50vw;
+    border-radius: 3vw;
+    border-color: blue;
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.about-div > h1{
+    font-size: 2em;
+}.about-div > h2{
+    font-size: 1.5em;
+}
+.about-div > p{
+    font-size: 1em;
+}
