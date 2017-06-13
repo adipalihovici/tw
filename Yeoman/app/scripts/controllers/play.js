@@ -46,8 +46,7 @@
      socketService.subscribeToWaiting(function(data){
          // console.log("RoomState : " + data.correctAnswer);
          $timeout(function() {
-           clearInterval($scope.countDown);
-           document.getElementById("timer-div").innerHTML="";
+           $scope.countDown = setInterval(function(){document.getElementById("timer-div").innerHTML="";},0);
            console.log("se executa Waiting ...");
            if(data.roomNumber === -1){
              location.replace("http://localhost:9000/#!/home");
