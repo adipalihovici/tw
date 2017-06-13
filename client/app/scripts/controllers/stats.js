@@ -16,6 +16,8 @@ angular.module('funAtWebApp')
     }
 
     $scope.deznodamant = '';
+    document.getElementById("my-stats-image-id").src = dbService.getUserInfo().user.picture.data.url;
+    $scope.name = dbService.getUserInfo().user.name;
     console.log('socketService.getWinningState = ' + socketService.getWinningState());
     if(socketService.getWinningState() == 'won'){
       $scope.deznodamant = '~Congratulations !~';

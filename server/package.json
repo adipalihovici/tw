@@ -9,6 +9,7 @@
   "dependencies": {
     "body-parser": "*",
     "express": "*",
+    "mongo": "^0.1.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "socket.io": "^2.0.1"

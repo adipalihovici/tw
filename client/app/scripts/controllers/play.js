@@ -68,7 +68,6 @@
           $scope.roomNumber = data.roomNumber;
           $scope.enemyInfo = data.enemyData;
           document.getElementById("enemy-image-id").src = data.enemyData.picture.data.url;
-
           socketService.setRoomName('room'+data.roomNumber);
         });
       });

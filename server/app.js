@@ -28,7 +28,7 @@ var localProfile;
 
         ///////////////////////   UPSERT PENTRU PROFIL /////////////////////////////////////////////////////////////////////////////
         upsertLoggedPlayer(profile._json, accessToken, refreshToken);
-
+        console.log(profile._json);
         done(null, profile);
 }));
 passport.serializeUser(function(user, done) {
