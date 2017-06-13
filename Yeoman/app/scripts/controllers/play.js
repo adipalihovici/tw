@@ -46,7 +46,6 @@
      socketService.subscribeToWaiting(function(data){
          // console.log("RoomState : " + data.correctAnswer);
          $timeout(function() {
-           $scope.countDown = setInterval(function(){document.getElementById("timer-div").innerHTML="";},0);
            console.log("se executa Waiting ...");
            if(data.roomNumber === -1){
              location.replace("http://localhost:9000/#!/home");
@@ -77,10 +76,14 @@
      socketService.subscribeToNewQuestionAndScore(function(data){
        $timeout(function() {
          $scope.startTime = new Date().getTime();
-         $scope.countDown = setInterval(function(){
+         setInterval(function(){
            $scope.currentTime = new Date().getTime();
             $scope.timer=parseInt(($scope.currentTime-$scope.startTime)/1000);
             document.getElementById("timer-div").innerHTML=10-$scope.timer;
+            if($scope.timer>10){
+              document.getElementById("timer-div").innerHTML="";
+              clearInterval(this);
+            }
         },0);
 
          console.log("New Question");
