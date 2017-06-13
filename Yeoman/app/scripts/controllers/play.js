@@ -74,15 +74,14 @@
       });
 
      socketService.subscribeToNewQuestionAndScore(function(data){
-
        $timeout(function() {
-          $scope.timer = 10;
+         $scope.startTime = new Date.getMiliseconds();
          setInterval(function(){
-            if($scope.timer>0){
-              $scope.timer--;
-            }
-        },1000);
-        
+           $scope.curreentTime = new Date.getMiliseconds();
+            $scope.timer=($scope.currentTime-$scope.startTime)%1000;
+            document.getElementById("timer-div").innerHTML=$scope.timer;
+        },0);
+
          console.log("New Question");
          $scope.currentQuestion = data.question.questionText;
 
