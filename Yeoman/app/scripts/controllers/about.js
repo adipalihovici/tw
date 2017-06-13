@@ -2,16 +2,15 @@
 
 /**
  * @ngdoc function
- * @name funwebregandit1App.controller:AboutCtrl
+ * @name funAtWebApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the funwebregandit1App
+ * Controller of the funAtWebApp
  */
-angular.module('funwebregandit1App')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+angular.module('funAtWebApp')
+  .controller('AboutCtrl', function (dbService) {
+    if(dbService.initialized() === 0){
+        location.replace("http://localhost:9000/#!/");
+        return;
+    }
   });

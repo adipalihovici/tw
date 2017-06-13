@@ -2,16 +2,17 @@
 
 /**
  * @ngdoc function
- * @name funwebregandit1App.controller:LeaderboardCtrl
+ * @name funAtWebApp.controller:LeaderboardCtrl
  * @description
  * # LeaderboardCtrl
- * Controller of the funwebregandit1App
+ * Controller of the funAtWebApp
  */
-angular.module('funwebregandit1App')
-  .controller('LeaderboardCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+angular.module('funAtWebApp')
+  .controller('LeaderboardCtrl', function (dbService) {
+
+    if(dbService.initialized() === 0){
+        location.replace("http://localhost:9000/#!/");
+        return;
+    }
+
   });
